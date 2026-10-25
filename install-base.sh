@@ -9,7 +9,7 @@ PACKAGES=(
 	git
 	# utils
 	less linux linux-firmware base-devel tree htop
-	pipewire-jack
+	pipewire-jack noto-fonts
 	# environment
 	mangowm tmux firefox rofi kitty
 	)
@@ -31,4 +31,4 @@ done
 git clone --depth=1 $GITREPO $DOTFILESDIR
 
 cd $DOTFILESDIR
-bash install.sh
+source install.sh
