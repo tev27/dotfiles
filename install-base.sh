@@ -9,7 +9,7 @@ PACKAGES=(
 	git
 	# utils
 	less linux linux-firmware base-devel tree htop
-	pipewire-jack noto-fonts
+	pipewire-jack noto-fonts brightnessctl playerctl
 	# environment
 	mangowm tmux firefox rofi kitty
 	)
