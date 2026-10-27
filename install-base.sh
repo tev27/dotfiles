@@ -14,7 +14,7 @@ PACKAGES=(
 	# DE utils
 	wev grim slurp wl-clipboard cliphist wl-clip-persist
 	# environment
-	mangowm tmux firefox rofi kitty keepassxc
+	mangowm tmux firefox rofi kitty keepassxc mako
 	)
 
 AURPACKAGES=(xfce-polkit)
