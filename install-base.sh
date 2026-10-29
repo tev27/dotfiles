@@ -38,7 +38,7 @@ sudo pacman -Qdtq | sudo pacman -Rns --noconfirm -
 
 
 echo "adding zoxide to .zshrc"
-echo "eval "$(zoxide init zsh)" >> ~/.zshrc
+echo "eval \"$(zoxide init zsh)\"" >> ~/.zshrc
 
 
 git clone --depth=1 $GITREPO $DOTFILESDIR
