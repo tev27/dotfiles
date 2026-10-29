@@ -19,29 +19,36 @@ PACKAGES=(
 
 AURPACKAGES=(xfce-polkit)
 
-echo "updating and installing packages..."
-sudo pacman -Syu --noconfirm
-sudo pacman -S --noconfirm "${PACKAGES[@]}"
 
-echo "installing AUR packages..."
-cd
-mkdir -p $AURDIR
-for aurname in ${AURPACKAGES[@]}
-do
-	git clone "https://aur.archlinux.org/$aurname.git" $AURDIR/$aurname
-	makepkg -sicD $AURDIR/$aurname --noconfirm
-done
+install() {
+	echo "updating and installing packages..."
+	sudo pacman -Syu --noconfirm
+	sudo pacman -S --noconfirm "${PACKAGES[@]}"
 
-# clear orphans created by aur make
-echo "clearing orphaned packages install by makepkg"
-sudo pacman -Qdtq | sudo pacman -Rns --noconfirm -
+	echo "installing AUR packages..."
+	cd
+	mkdir -p $AURDIR
+	for aurname in ${AURPACKAGES[@]}
+	do
+		git clone "https://aur.archlinux.org/$aurname.git" $AURDIR/$aurname
+		makepkg -sicD $AURDIR/$aurname --noconfirm
+	done
 
-
-echo "adding zoxide to .zshrc"
-echo "eval \"$(zoxide init zsh)\"" >> ~/.zshrc
+	# clear orphans created by aur make
+	echo "clearing orphaned packages install by makepkg"
+	sudo pacman -Qdtq | sudo pacman -Rns --noconfirm -
 
 
-git clone --depth=1 $GITREPO $DOTFILESDIR
+	echo "adding zoxide to .zshrc"
+	echo "eval \"$(zoxide init zsh)\"" >> ~/.zshrc
 
-cd $DOTFILESDIR
-source install.sh
+
+	git clone --depth=1 $GITREPO $DOTFILESDIR
+
+	cd $DOTFILESDIR
+	source install.sh
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+	install "$@"
+fi
