@@ -8,7 +8,7 @@ PACKAGES=(
 	# necessary for pulling dotfiles
 	git
 	# utils
-	less linux linux-firmware base-devel tree htop mlocate
+	less linux base base-devel tree htop mlocate
 	pipewire-jack noto-fonts brightnessctl playerctl
 	xdg-desktop-portal-wlr zoxide
 	# DE utils
