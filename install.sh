@@ -1,6 +1,7 @@
 #!/bin/bash
 # run from project root (dotfiles/)
 
+source ./install-base.sh
 mkdir -p ~/.config
 mkdir -p ~/Pictures/Screenshots
 
