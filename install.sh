@@ -9,6 +9,7 @@ mkdir -p ~/Pictures/Screenshots
 echo "linking config dirs"
 ln -s $(realpath ./mangowm) $(realpath ~/.config/mango)
 ln -s $(realpath ./mako) $(realpath ~/.config/mako)
+ln -s $(realpath ./kitty) $(realpath ~/.config/kitty)
 ln -s $(realpath ./xdg-desktop-portal-termfilechooser) $(realpath ~/.config/xdg-desktop-portal-termfilechooser)
 ln -s $(realpath ./xdg-desktop-portal) $(realpath ~/.config/xdg-desktop-portal)
 

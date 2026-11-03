@@ -13,6 +13,7 @@ PACKAGES=(
 	xdg-desktop-portal-wlr
 	# DE utils
 	wev grim slurp wl-clipboard cliphist wl-clip-persist
+	otf-geist-mono-nerd
 	# environment
 	mangowm tmux firefox rofi kitty mako yazi zoxide zsh
 	)
