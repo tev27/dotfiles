@@ -10,15 +10,18 @@ PACKAGES=(
 	# utils
 	less linux base base-devel tree htop mlocate
 	pipewire-jack noto-fonts brightnessctl playerctl
-	xdg-desktop-portal-wlr
+	xdg-desktop-portal-wlr fzf
 	# DE utils
 	wev grim slurp wl-clipboard cliphist wl-clip-persist
 	ttf-monofur-nerd
 	# environment
-	mangowm tmux firefox rofi kitty mako yazi zoxide zsh
+	mangowm tmux firefox rofi kitty mako yazi zoxide zsh keepassxc
 	)
 
-AURPACKAGES=(xfce-polkit xdg-desktop-portal-termfilechooser-hunkyburrito-git)
+AURPACKAGES=(
+	xfce-polkit xdg-desktop-portal-termfilechooser-hunkyburrito-git
+	oh-my-zsh-git zsh-autocomplete-git
+	)
 
 
 install() {
