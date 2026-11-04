@@ -17,3 +17,6 @@ ln -s $(realpath ./xdg-desktop-portal) $(realpath ~/.config/xdg-desktop-portal)
 echo "See also:"
 echo "https://github.com/gpakosz/.tmux"
 
+echo "\n And:"
+echo "- ensure pacman mirrorlist is up to date"
+echo "- change default shell to zsh"
