@@ -1,4 +1,5 @@
 #!/bin/bash
+# install to /usr/bin/luks-automount.sh or elsewhere
 
 LOG="/var/log/luks-automount.log"
 
