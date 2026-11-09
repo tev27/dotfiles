@@ -23,6 +23,7 @@ shift $((OPTIND - 1))
 
 if [[ $# -ne 2 ]]; then
   echo "bad options"
+  exit
 fi
 
 LUKS_UUID=$1
@@ -41,19 +42,24 @@ sudo_graphical() {
   sudo -u $user DISPLAY=$display DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$uid/bus "$@"
 }
 
+notify_log() {
+  sudo_graphical notify-send -t 3000 "luks-automount.sh" "$*"
+  echo "$*" | tee -a $LOG
+}
+
 mount_backups() {
   if [[ ! -e "/dev/disk/by-uuid/$LUKS_UUID" ]]; then
-    echo "luks partition not available by uuid, is it plugged in?" | tee -a $LOG
+    notify_log "cannot find LUKS device by uuid (LUKS_UUID=$LUKS_UUID)"
     return $PARTNOTFOUND_ret || exit $PARTNOTFOUND_ret
   fi
 
   if [[ -e "/dev/disk/by-uuid/$OPENED_UUID" ]]; then
-    echo "crypt block device is already available, is it already open?" | tee -a $LOG
+    notify_log "crypt block device is already available, is it already open? (OPENED_UUID=$OPENEDUUID)"
     return $ALREADYOPEN_ret || exit $ALREADYOPEN_ret
   fi
 
   if mountpoint -q $MOUNTDIR; then
-    echo "mountdir is already a mount point, is it already mounted?" | tee -a $LOG
+    notify_log "mountdir is already a mount point, is it already mounted? (MOUNTDIR=$MOUNTDIR)"
     return $MOUNTDIRBUSY_ret || exit $MOUNTDIRBUSY_ret
   fi
 
@@ -69,13 +75,12 @@ mount_backups() {
   fi
 
   if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
-    sudo_graphical notify-send "failed to open LUKS device"
     return $LUKSOPENFAIL_ret || exit $LUKSOPENFAIL_ret
   fi
 
   systemd-mount "/dev/mapper/$MAPPERNAME" $MOUNTDIR |& tee -a $LOG
   if [[ ${PIPESTATUS[0]} -eq 0 ]]; then
-    sudo_graphical notify-send -t 3000 "luks-automount.sh" "mounted $MAPPERNAME"
+    notify_log "mounted $MAPPERNAME"
   fi
 
   echo "done" | tee -a $LOG
