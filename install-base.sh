@@ -20,8 +20,10 @@ PACKAGES=(
 
 AURPACKAGES=(
 	xfce-polkit xdg-desktop-portal-termfilechooser-hunkyburrito-git
-	oh-my-zsh-git zsh-autocomplete-git
+	oh-my-zsh-git zinit
 	)
+
+DARKMODE=1
 
 
 install() {
