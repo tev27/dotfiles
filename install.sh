@@ -5,7 +5,7 @@ source ./install-base.sh
 mkdir -p ~/.config
 mkdir -p ~/Pictures/Screenshots
 mkdir -p ~/.config/gtk-3.0
-mkdir -p ~/.confiy/gtk-4.0
+mkdir -p ~/.config/gtk-4.0
 
 # link config dirs
 echo "linking config dirs"
@@ -39,5 +39,4 @@ echo "https://github.com/gpakosz/.tmux"
 echo "\n And:"
 echo "- ensure pacman mirrorlist is up to date"
 echo "- change default shell to zsh"
-echo "- sudo cp -iv dotfiles/luks-automount.sh /usr/bin/"
-echo "- install luks-automount.sh to /usr/bni and add udev rules for luks usbs"
+echo "- install luks-automount.sh to /usr/bin and add udev rules for luks usbs"
