@@ -13,6 +13,14 @@
     font-size: 10px;
 }
 
+#clock.date {
+    margin: 0px 10px;
+}
+
 #battery {
+    margin: 0px 10px;
+}
+
+#custom-luks-keystore {
     margin: 0px 10px;
 }
