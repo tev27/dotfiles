@@ -20,7 +20,7 @@ PACKAGES=(
 
 AURPACKAGES=(
 	xfce-polkit xdg-desktop-portal-termfilechooser-hunkyburrito-git
-	oh-my-zsh-git zinit
+	oh-my-zsh-git zinit mangobar-git
 	)
 
 DARKMODE=1

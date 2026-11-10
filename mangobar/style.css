@@ -1,0 +1,18 @@
+
+* {
+    font-family: "Jetbrains Mono";
+    font-size: 8px;
+}
+
+#tags {
+    border-radius: 0;
+}
+
+#clock {
+    font-weight: bold;
+    font-size: 10px;
+}
+
+#battery {
+    margin: 0px 10px;
+}

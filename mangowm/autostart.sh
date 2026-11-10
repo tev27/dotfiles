@@ -3,6 +3,9 @@
 # start graphical polkit agent
 /usr/lib/xfce-polkit/xfce-polkit &
 
+# start status bar
+/usr/bin/mangobar &
+
 # Keep clipboard content after app closes
 wl-clip-persist --clipboard regular --reconnect-tries 0 &
 

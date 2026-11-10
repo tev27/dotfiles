@@ -1,0 +1,12 @@
+{
+    "layer": "top",
+    "height": 20,
+    "modules-left": ["workspaces", "custom/luks-keystore"],
+    "modules-center": ["clock#time"],
+    "modules-right": ["battery"],
+
+    // modules
+    "clock#time": {
+	"format": "{:L%H:%M:%S}"
+    }
+}
