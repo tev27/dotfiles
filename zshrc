@@ -9,16 +9,18 @@ source /usr/share/zinit/zinit.zsh
 
 # zinit configuration
 
-zinit wait lucid for \
-  atinit"zicompinit; zicdreplay" \
-    zdharma-continuum/fast-syntax-highlighting \
-    marlonrichert/zsh-autocomplete \
-  atload"_zsh_autosuggest_start" \
-    zsh-users/zsh-autosuggestions \
-  blockf atpull'zinit creinstall -q .' \
-    zsh-users/zsh-completions
+eval "$(zoxide init --cmd cd zsh)"
+export EDITOR='vim'
+
+zi for \
+  atload"zicompinit; zicdreplay" \
+  blockf \
+  lucid \
+  load \
+  @marlonrichert/zsh-autocomplete \
+  load \
+  @zsh-users/zsh-autosuggestions
+
 
 source $ZSH/oh-my-zsh.sh
 
-eval "$(zoxide init --cmd cd zsh)"
-export EDITOR='vim'
