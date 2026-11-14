@@ -63,23 +63,29 @@ mount_backups() {
     return $MOUNTDIRBUSY_ret || exit $MOUNTDIRBUSY_ret
   fi
 
+  cryptsetup_return=-1
   if [[ -e $KEYFILE ]]; then
-    cryptsetup --key-file $KEYFILE open "/dev/disk/by-uuid/$LUKS_UUID" $MAPPERNAME |& tee -a $LOG
+    cryptsetup --key-file $KEYFILE open "/dev/disk/by-uuid/$LUKS_UUID" $MAPPERNAME \
+      |& tee -a $LOG; \
+      cryptsetup_return=("${PIPESTATUS[0]}")
   else
     PASSWORD="$(sudo_graphical zenity --password)"
     # strip newline
     PASSWORD=${PASSWORD//[$'\n']}
 
     echo -n $PASSWORD | \
-    cryptsetup --key-file - open "/dev/disk/by-uuid/$LUKS_UUID" $MAPPERNAME |& tee -a $LOG
+      cryptsetup --key-file - open "/dev/disk/by-uuid/$LUKS_UUID" $MAPPERNAME \
+      |& tee -a $LOG; \
+      cryptsetup_return=("${PIPESTATUS[1]}")
   fi
 
-  if [[ ${PIPESTATUS[0]} -ne 0 ]]; then
+  if [[ $cryptsetup_return -ne 0 ]]; then
+    notify_log "failed to open LUKS device, wrong password?"
     return $LUKSOPENFAIL_ret || exit $LUKSOPENFAIL_ret
   fi
 
   systemd-mount "/dev/mapper/$MAPPERNAME" $MOUNTDIR |& tee -a $LOG
-  if [[ ${PIPESTATUS[0]} -eq 0 ]]; then
+  if mountpoint -q $MOUNTDIR ; then
     notify_log "mounted $MAPPERNAME"
   fi
 
