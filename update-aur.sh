@@ -6,6 +6,7 @@ cd
 for aurpkg in ~/$AURDIR/* ; do
   if [[ -d "$aurpkg" ]]; then
     cd $aurpkg
+    git fetch
     LOCAL=$(git rev-parse @)
     REMOTE=$(git rev-parse origin)
     if [ $LOCAL != $REMOTE ]; then
