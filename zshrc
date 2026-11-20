@@ -19,7 +19,12 @@ zi for \
   load \
   @marlonrichert/zsh-autocomplete \
   load \
-  @zsh-users/zsh-autosuggestions
+  @zsh-users/zsh-autosuggestions \
+  #load \
+  #@joshskidmore/zsh-fzf-history-search
+ 
+zi ice lucid wait'0'
+zi light joshskidmore/zsh-fzf-history-search
 
 
 source $ZSH/oh-my-zsh.sh
